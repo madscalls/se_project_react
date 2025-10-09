@@ -3,9 +3,7 @@ import closebtn from "../../images/close-btn.svg";
 
 function ModalWithForm({ children, buttonText, title, activeModal, onClose }) {
   return (
-    <div
-      className={`modal ${activeModal === "add-garment" && "modal__opened"}`}
-    >
+    <div className="modal modal__opened">
       <div className="modal__content">
         <div>
           <h2 className="modal__title">{title}</h2>
