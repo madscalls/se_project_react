@@ -1,5 +1,6 @@
-import sunny from "../../images/sunny.svg";
+import sunny from "../../images/day/sun-day.svg";
 import "./weathercard.css";
+
 function WeatherCard({ weatherData }) {
   return (
     <section className="weather-card">

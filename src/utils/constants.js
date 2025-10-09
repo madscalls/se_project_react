@@ -1,4 +1,66 @@
-// The utils files contain default clothing items
+export const weatherOptions = [
+  {
+    day: true,
+    condition: "clear",
+    url: new URL("../images/day/sun-day.svg", import.meta.url),
+  },
+  {
+    day: false,
+    condition: "clear",
+    url: new URL("../images/night/clear-night.png", import.meta.url),
+  },
+  {
+    day: true,
+    condition: "cloudy",
+    url: new URL("../images/day/cloudy-day.svg", import.meta.url),
+  },
+  {
+    day: false,
+    condition: "cloudy",
+    url: new URL("../images/night/cloudy-night.svg", import.meta.url),
+  },
+  {
+    day: true,
+    condition: "rain",
+    url: new URL("../images/day/rain-day.png", import.meta.url),
+  },
+  {
+    day: false,
+    condition: "rain",
+    url: new URL("../images/night/rain-night.svg", import.meta.url),
+  },
+  {
+    day: true,
+    condition: "storm",
+    url: new URL("../images/day/storm-day.svg", import.meta.url),
+  },
+  {
+    day: false,
+    condition: "storm",
+    url: new URL("../images/night/storm-night.svg", import.meta.url),
+  },
+  {
+    day: true,
+    condition: "snow",
+    url: new URL("../images/day/snow-day.svg", import.meta.url),
+  },
+  {
+    day: false,
+    condition: "snow",
+    url: new URL("../images/night/snow-night.svg", import.meta.url),
+  },
+  {
+    day: true,
+    condition: "fog",
+    url: new URL("../images/day/fog-day.png", import.meta.url),
+  },
+  {
+    day: false,
+    condition: "fog",
+    url: new URL("../images/night/fg-night.svg", import.meta.url),
+  },
+];
+
 export const defaultClothingItems = [
   {
     _id: 1,
