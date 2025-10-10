@@ -9,6 +9,8 @@
   align-items: center;
   justify-content: center;
   visibility: hidden;
+  border-radius: 20px;
+  border: 1px solid #0000004d;
 }
 
 .modal__opened {
@@ -17,6 +19,7 @@
 
 .modal__title {
   margin: 0;
+  padding-bottom: 24px;
 }
 
 .modal__close {
@@ -61,7 +64,11 @@
   padding: 0;
   display: flex;
   flex-direction: column;
+  color: black;
+  accent-color: #000;
 }
+
+/*FIX DISABLE VERSUS BASE COLOR(#000)*/
 
 .modal__submit {
   background-color: rgb(0, 0, 0, 0.3);
@@ -71,4 +78,8 @@
   height: 36px;
   padding: 8px 16px;
   border: none;
+}
+
+.modal__submit:hover {
+  background-color: #00000099;
 }
