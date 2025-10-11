@@ -1,5 +1,7 @@
 .modal {
   position: fixed;
+  inset: 0;
+  z-index: 1000;
   top: 0;
   left: 0;
   right: 0;
@@ -9,6 +11,19 @@
   align-items: center;
   justify-content: center;
   visibility: hidden;
+  font-family: "Cabinet Grotesk", "Times New Roman", Times, serif;
+  font-weight: 700;
+  font-size: 20px;
+  line-height: 24px;
+}
+
+.modal__caption {
+  margin: 0;
+  padding: 20px 0 12px 0;
+}
+
+.modal__weather {
+  margin: 0;
 }
 
 .modal__opened {
@@ -31,15 +46,26 @@
   height: 16px;
   width: 16px;
   cursor: pointer;
+  color: #fff;
 }
 
 .modal__content {
   background-color: #fff;
   position: relative;
-  padding: 28px 28px 36px;
   max-width: 496px;
   box-sizing: border-box;
   width: 100%;
+  border-radius: 16px;
+  overflow: hidden;
+  padding: 0;
+}
+
+.modal__image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center top;
+  display: block;
 }
 
 .modal__input {
@@ -71,4 +97,9 @@
   height: 36px;
   padding: 8px 16px;
   border: none;
+}
+
+.modal__footer {
+  padding: 28px 28px 36px;
+  background: #fff;
 }

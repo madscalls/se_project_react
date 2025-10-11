@@ -78,6 +78,7 @@
   height: 36px;
   padding: 8px 16px;
   border: none;
+  z-index: 1;
 }
 
 .modal__submit:hover {
