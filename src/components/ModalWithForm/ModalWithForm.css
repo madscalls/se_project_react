@@ -41,7 +41,7 @@
   position: relative;
   padding: 28px 28px 36px;
   max-width: 496px;
-  box-sizing: border-box;
+  /* box-sizing: border-box; */
   width: 100%;
 }
 

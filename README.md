@@ -1,5 +1,9 @@
 # React + Vite
 
+An API enabled application that will help you figure out what wear, no matter the weather. It integrates your time, location, and the current weather to help your indescisive outfit choices.
+
+This features modals for easy accsessibilty and customization.
+
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
 Currently, two official plugins are available:
