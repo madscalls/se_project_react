@@ -36,13 +36,14 @@
   cursor: pointer;
 }
 
-.modal__content {
+.modal__content-form {
   background-color: #fff;
   position: relative;
-  padding: 28px 28px 36px;
   max-width: 496px;
   /* box-sizing: border-box; */
   width: 100%;
+  padding: 28px 28px 36px;
+  border-radius: 20px;
 }
 
 .modal__input {
