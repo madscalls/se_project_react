@@ -101,60 +101,6 @@
       "name": "T-Shirt",
       "weather": "hot",
       "imageUrl": "https://practicum-content.s3.us-west-1.amazonaws.com/software-engineer/wtwr-project/T-Shirt.png?etag=44ed1963c44ab19cd2f5011522c5fc09"
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "cold",
-      "_id": 17
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "cold",
-      "_id": 18
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "cold",
-      "_id": 19
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "hot",
-      "_id": 20
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "hot",
-      "_id": 21
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "hot",
-      "_id": 22
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "hot",
-      "_id": 23
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "hot",
-      "_id": 24
-    },
-    {
-      "name": "asdfghj",
-      "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/b/b6/Image_created_with_a_mobile_phone.png",
-      "weather": "hot",
-      "_id": 25
     }
   ]
 }
