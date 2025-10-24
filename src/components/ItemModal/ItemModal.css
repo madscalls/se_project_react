@@ -20,6 +20,7 @@
 .modal__caption {
   margin: 0;
   padding: 20px 0 12px 0;
+  position: relative;
 }
 
 .modal__weather {
@@ -49,6 +50,16 @@
   color: #fff;
 }
 
+.modal__delete-btn {
+  position: absolute;
+  top: 420px;
+  right: 63px;
+  color: #ff4d00;
+  background: none;
+  border: none;
+  font-weight: 700;
+  cursor: pointer;
+}
 .modal__content {
   background-color: #fff;
   position: relative;

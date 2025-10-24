@@ -23,7 +23,10 @@ const api = {
     return fetch(`${baseUrl}/items/${itemID}`, {
       method: "DELETE",
       headers,
-    }).then(handleServerResponse);
+    }).then((res) => {
+      if (!res.ok) return Promise.reject(`Error: ${res.status}`);
+      return Promise.resolve();
+    });
   },
 };
 

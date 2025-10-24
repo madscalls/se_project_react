@@ -53,6 +53,21 @@ function App() {
       .catch(console.error);
   };
 
+  const handleDeleteItem = (card) => {
+    const id = card.id ?? card._id;
+    if (!id) return;
+
+    api
+      .removeItem(id)
+      .then(() => {
+        setClothingItems((prev) =>
+          prev.filter((item) => (item.id ?? item._id) !== id)
+        );
+        closeAllModals();
+      })
+      .catch(console.error);
+  };
+
   const closeAllModals = () => {
     setActiveModal("");
   };
@@ -122,6 +137,7 @@ function App() {
           onClose={closeActiveModal}
           // activeModal={activeModal}
           isOpen={activeModal === "preview"}
+          onDelete={handleDeleteItem}
         />
 
         {/* {activeModal === "preview" && (

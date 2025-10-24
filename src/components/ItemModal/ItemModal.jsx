@@ -1,7 +1,9 @@
 import "./ItemModal.css";
 import closebtnWhite from "../../images/close-btn-WHITE.svg";
 
-const ItemModal = ({ isOpen, onClose, card }) => {
+const ItemModal = ({ isOpen, onClose, card, onDelete }) => {
+  const handleDelete = () => onDelete?.(card);
+
   return (
     <div className={`modal ${isOpen ? "modal__opened" : ""}`} onClick={onClose}>
       <div
@@ -14,6 +16,13 @@ const ItemModal = ({ isOpen, onClose, card }) => {
         <img src={card.imageUrl} alt={card.name} className="modal__image" />
         <div className="modal__footer">
           <h2 className="modal__caption">{card.name}</h2>
+          <button
+            className="modal__delete-btn"
+            type="button"
+            onClick={handleDelete}
+          >
+            Delete item
+          </button>
           <p className="modal__weather">Weather: {card.weather} </p>
         </div>
       </div>
