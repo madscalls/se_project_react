@@ -53,7 +53,7 @@ export const weatherOptions = [
   {
     day: true,
     condition: "mist",
-    url: new URL("../images/day/fog-day.png", import.meta.url).href,
+    url: new URL("../images/day/fog-day.svg", import.meta.url).href,
   },
   {
     day: false,

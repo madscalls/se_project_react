@@ -19,6 +19,7 @@
   font-weight: 700;
   font-size: 20px;
   margin-left: 20px;
+  cursor: pointer;
 }
 /* .clothes-section__items {
   display: flex;
