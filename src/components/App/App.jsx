@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 import "./App.css";
-import { APIkey, coordinates } from "../../utils/constants";
+import { APIkey, defaultCoordinates } from "../../utils/constants";
 import api from "../../utils/api.js";
+import useCurrentLocation from "../../hooks/useCurrentLocation";
 import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
@@ -80,20 +81,32 @@ function App() {
     setActiveModal("");
   };
 
+  const { location, error: locationError } = useCurrentLocation();
+
   useEffect(() => {
-    getWeather(coordinates, APIkey)
+    // Get weather data when location is available
+    const coords = location || defaultCoordinates;
+
+    getWeather(coords, APIkey)
       .then((data) => {
         const filteredData = filterWeatherData(data);
         setWeatherData(filteredData);
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Weather fetch error:", error);
+      });
+  }, [location]); // Re-run when location changes
 
+  useEffect(() => {
+    // Fetch clothing items on mount
     api
       .getItems()
       .then((data) => {
         setClothingItems([...data].reverse());
       })
-      .catch(console.error);
+      .catch((error) => {
+        console.error("Items fetch error:", error);
+      });
   }, []);
   return (
     <CurrentTemperatureUnitContext.Provider

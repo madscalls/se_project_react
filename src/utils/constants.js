@@ -177,7 +177,8 @@ export const defaultClothingItems = [
   },
 ];
 
-export const coordinates = {
+// Fallback coordinates (used if geolocation fails)
+export const defaultCoordinates = {
   latitude: 27.328512,
   longitude: -82.398413,
 };
