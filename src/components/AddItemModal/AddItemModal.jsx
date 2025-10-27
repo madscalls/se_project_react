@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
+import "./AddItemModal.css";
 
 const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
   const defaultValues = {
@@ -9,7 +10,33 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
     weather: "",
   };
 
-  const { values, handleChange, setValues } = useForm(defaultValues);
+  const validators = {
+    name: (val) => {
+      // require at least 3 letters (letters only)
+      const letters = (val.match(/[A-Za-z]/g) || []).length;
+      return letters >= 3 ? "" : "Title must contain at least 3 letters";
+    },
+    imageUrl: (val) => {
+      if (!val) return "";
+      try {
+        // require a valid absolute URL
+        // new URL will throw if invalid
+        // allow http(s) only
+        const url = new URL(val);
+        if (url.protocol !== "http:" && url.protocol !== "https:") {
+          return "URL must start with http:// or https://";
+        }
+        return "";
+      } catch (e) {
+        return "Please enter a valid URL";
+      }
+    },
+  };
+
+  const { values, handleChange, setValues, errors, isValid } = useForm(
+    defaultValues,
+    validators
+  );
 
   useEffect(() => {
     if (isOpen) setValues(defaultValues);
@@ -17,6 +44,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
 
   function handleSubmit(evt) {
     evt.preventDefault();
+    if (!isValid) return;
     onAddItem(values);
   }
 
@@ -27,6 +55,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      isFormValid={isValid}
     >
       <label htmlFor="name" className="modal__label">
         Name:{" "}
@@ -42,6 +71,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           onChange={handleChange}
           required
         />
+        <span className="modal__error">{errors.name}</span>
       </label>
       <label htmlFor="imageUrl" className="modal__label">
         Image:{" "}
@@ -55,10 +85,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           onChange={handleChange}
           required
         />
+        <span className="modal__error">{errors.imageUrl}</span>
       </label>
       <fieldset className="modal__radio-btns">
         <legend className="modal__legend">Select the weather type:</legend>
-        <label htmlFor="hot" className="modal__label modal__label_type_radio">
+        <div className="modal__radio-container">
           <input
             type="radio"
             className="modal__radio-input"
@@ -68,9 +99,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             onChange={handleChange}
             required
           />
-          Hot
-        </label>
-        <label htmlFor="cold" className="modal__label modal__label_type_radio">
+          <label htmlFor="hot" className="modal__label_type_radio">
+            Hot
+          </label>
+        </div>
+        <div className="modal__radio-container">
           <input
             type="radio"
             className="modal__radio-input"
@@ -80,9 +113,11 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             onChange={handleChange}
             required
           />
-          Cold{" "}
-        </label>
-        <label htmlFor="warm" className="modal__label modal__label_type_radio">
+          <label htmlFor="cold" className="modal__label_type_radio">
+            Cold
+          </label>
+        </div>
+        <div className="modal__radio-container">
           <input
             type="radio"
             className="modal__radio-input"
@@ -92,8 +127,10 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
             onChange={handleChange}
             required
           />
-          Warm
-        </label>
+          <label htmlFor="warm" className="modal__label_type_radio">
+            Warm
+          </label>
+        </div>
       </fieldset>
     </ModalWithForm>
   );
