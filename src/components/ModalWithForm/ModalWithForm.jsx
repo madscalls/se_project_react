@@ -1,5 +1,6 @@
 import "../ModalWithForm/ModalWithForm.css";
 import closebtn from "../../images/close-btn.svg";
+import useModalClose from "../../hooks/useModalClose";
 
 function ModalWithForm({
   children,
@@ -10,10 +11,12 @@ function ModalWithForm({
   onClose,
   onSubmit,
   isFormValid = true,
+  isLoading = false,
 }) {
+  useModalClose(isOpen, onClose);
   return (
-    <div className={`modal ${isOpen ? "modal__opened" : ""}`} onClick={onClose}>
-      <div className="modal__content-form" onClick={(e) => e.stopPropagation()}>
+    <div className={`modal ${isOpen ? "modal__opened" : ""}`}>
+      <div className="modal__content-form">
         <h2 className="modal__title">{title}</h2>
         <button onClick={onClose} type="button" className="modal__close">
           <img className="modal__close-btn" alt="close" src={closebtn} />
@@ -24,8 +27,8 @@ function ModalWithForm({
           <button
             className="modal__submit"
             type="submit"
-            disabled={!isFormValid}
-            aria-disabled={!isFormValid}
+            disabled={!isFormValid || isLoading}
+            aria-disabled={!isFormValid || isLoading}
           >
             {buttonText}
           </button>

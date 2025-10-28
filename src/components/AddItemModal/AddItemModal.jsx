@@ -3,44 +3,46 @@ import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import useForm from "../../hooks/useForm";
 import "./AddItemModal.css";
 
-const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
-  const defaultValues = {
-    name: "",
-    imageUrl: "",
-    weather: "",
-  };
+const defaultValues = {
+  name: "",
+  imageUrl: "",
+  weather: "",
+};
 
-  const validators = {
-    name: (val) => {
-      // require at least 3 letters (letters only)
-      const letters = (val.match(/[A-Za-z]/g) || []).length;
-      return letters >= 3 ? "" : "Title must contain at least 3 letters";
-    },
-    imageUrl: (val) => {
-      if (!val) return "";
-      try {
-        // require a valid absolute URL
-        // new URL will throw if invalid
-        // allow http(s) only
-        const url = new URL(val);
-        if (url.protocol !== "http:" && url.protocol !== "https:") {
-          return "URL must start with http:// or https://";
-        }
-        return "";
-      } catch (e) {
-        return "Please enter a valid URL";
+const validators = {
+  name: (val) => {
+    // require at least 3 letters (letters only)
+    const letters = (val.match(/[A-Za-z]/g) || []).length;
+    return letters >= 3 ? "" : "Title must contain at least 3 letters";
+  },
+  imageUrl: (val) => {
+    if (!val) return "";
+    try {
+      // require a valid absolute URL
+      // new URL will throw if invalid
+      // allow http(s) only
+      const url = new URL(val);
+      if (url.protocol !== "http:" && url.protocol !== "https:") {
+        return "URL must start with http:// or https://";
       }
-    },
-  };
+      return "";
+    } catch (e) {
+      return "Please enter a valid URL";
+    }
+  },
+};
 
-  const { values, handleChange, setValues, errors, isValid } = useForm(
+const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
+  const { values, handleChange, errors, isValid, resetForm } = useForm(
     defaultValues,
     validators
   );
 
   useEffect(() => {
-    if (isOpen) setValues(defaultValues);
-  }, [isOpen, setValues]);
+    if (isOpen) {
+      resetForm(defaultValues);
+    }
+  }, [isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();

@@ -1,7 +1,8 @@
 .card {
   border: solid 1px #0000004d;
   border-radius: 4px;
-  width: 323px;
+  width: 100%;
+  max-width: 323px;
   position: relative;
   justify-content: center;
 }

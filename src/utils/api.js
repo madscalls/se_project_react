@@ -1,7 +1,7 @@
 const baseUrl = "http://localhost:3001";
 const headers = { "Content-Type": "application/json" };
 
-const handleServerResponse = (res) =>
+export const handleServerResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
 const api = {
   // GET
@@ -25,7 +25,7 @@ const api = {
       headers,
     }).then((res) => {
       if (!res.ok) return Promise.reject(`Error: ${res.status}`);
-      return Promise.resolve();
+      return res;
     });
   },
 };

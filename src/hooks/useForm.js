@@ -5,6 +5,8 @@ export default function useForm(defaultValues, validators = {}) {
   const [errors, setErrors] = useState({});
   const [isValid, setIsValid] = useState(false);
 
+  // Using useMemo instead of useCallback for object memoization
+
   function handleChange(evt) {
     const { name, value, validity, validationMessage } = evt.target;
 
@@ -25,11 +27,11 @@ export default function useForm(defaultValues, validators = {}) {
     });
   }
 
-  function resetForm(newValues = defaultValues) {
-    setValues(newValues);
+  const resetForm = (newValues = defaultValues) => {
+    setValues(newValues || defaultValues);
     setErrors({});
     setIsValid(false);
-  }
+  };
 
-  return { values, setValues, handleChange, errors, isValid, resetForm };
+  return { values, handleChange, errors, isValid, resetForm };
 }

@@ -8,13 +8,14 @@ import Header from "../Header/Header";
 import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import Footer from "../Footer/Footer";
-// import ModalWithForm from "../ModalWithForm/ModalWithForm";
 import ItemModal from "../ItemModal/ItemModal";
 import AddItemModal from "../AddItemModal/AddItemModal";
 import { getWeather, filterWeatherData } from "../../utils/weatherApi";
 import CurrentTemperatureUnitContext from "../../contexts/CurrentTemperatureUnitContext";
 
 function App() {
+  const [isLoading, setIsLoading] = useState(false);
+
   const [weatherData, setWeatherData] = useState({
     type: "",
     temp: { F: 999, C: 999 },
@@ -39,6 +40,7 @@ function App() {
   };
 
   const onAddItem = (inputValues) => {
+    setIsLoading(true);
     const newCardData = {
       name: inputValues.name,
       imageUrl: inputValues.imageUrl,
@@ -49,36 +51,35 @@ function App() {
       .addItem(newCardData)
       .then((data) => {
         setClothingItems([data, ...clothingItems]);
-        closeAllModals();
+        closeActiveModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
   const handleDeleteItem = (card) => {
     const id = card.id ?? card._id;
     if (!id) return;
 
+    setIsLoading(true);
     api
       .removeItem(id)
       .then(() => {
         setClothingItems((prev) =>
           prev.filter((item) => (item.id ?? item._id) !== id)
         );
-        closeAllModals();
+        closeActiveModal();
       })
-      .catch(console.error);
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   };
 
-  const closeAllModals = () => {
+  const closeActiveModal = () => {
     setActiveModal("");
   };
 
   const handleAddClick = () => {
     setActiveModal("add-garment");
-  };
-
-  const closeActiveModal = () => {
-    setActiveModal("");
   };
 
   const { location, error: locationError } = useCurrentLocation();
@@ -145,13 +146,16 @@ function App() {
           onAddItem={onAddItem}
           isOpen={activeModal === "add-garment"}
           onClose={closeActiveModal}
+          buttonText={isLoading ? "Saving..." : "Add garment"}
+          isLoading={isLoading}
         />
         <ItemModal
           card={selectedCard || {}}
           onClose={closeActiveModal}
-          // activeModal={activeModal}
           isOpen={activeModal === "preview"}
           onDelete={handleDeleteItem}
+          buttonText={isLoading ? "Deleting..." : "Delete item"}
+          isLoading={isLoading}
         />
 
         {/* {activeModal === "preview" && (
