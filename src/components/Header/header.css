@@ -1,7 +1,6 @@
 .header {
   display: flex;
   flex-direction: row;
-  justify-content: space-around;
   align-items: center;
   padding: 32px 0 28px;
   font-weight: 700;
@@ -18,9 +17,14 @@
   margin: 0;
 }
 
-.header__add-clothes-btn {
+.header__controls {
   margin-left: auto;
-  margin: 0 20px 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.header__add-clothes-btn {
   border: none;
   background-color: transparent;
   cursor: pointer;

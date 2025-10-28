@@ -18,14 +18,17 @@ function Header({ handleAddClick, weatherData }) {
       <p className="header__date-location">
         {currentDate}, {weatherData.city}
       </p>
-      <ToggleSwitch />
-      <button
-        onClick={handleAddClick}
-        type="button"
-        className="header__add-clothes-btn"
-      >
-        + Add clothes
-      </button>
+
+      <div className="header__controls">
+        <ToggleSwitch />
+        <button
+          onClick={handleAddClick}
+          type="button"
+          className="header__add-clothes-btn"
+        >
+          + Add clothes
+        </button>
+      </div>
       <NavLink className="header__nav-link" to="/profile">
         <div className="header__user-container">
           <p className="header__username">NAME</p>{" "}
