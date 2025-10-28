@@ -6,7 +6,7 @@ An API enabled application that will help you figure out what wear, no matter th
 
 [<img src="https://cdn-icons-png.flaticon.com/512/1829/1829261.png" width="50" alt="Watch Demo Video">](https://www.loom.com/share/de37d934a4644ec7a7d55578ebcbb431)
 
-_Video camera icon by [smashingstocks - Flaticon](https://www.flaticon.com/free-icons/video-camera)_
+(https://www.flaticon.com/free-icons/video-camera)\_
 
 This is a quick overview of functionality:
 
