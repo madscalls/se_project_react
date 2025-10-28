@@ -50,8 +50,15 @@
   border: none;
   border-bottom: 1px solid rgb(0, 0, 0, 0.5);
   outline: none;
-  margin-bottom: 28px;
+  margin-bottom: 15px;
   width: 440px;
+}
+
+.modal__error {
+  color: #ff4d00;
+  font-size: 16px;
+  margin-top: 4px;
+  display: block;
 }
 
 .modal__form {
