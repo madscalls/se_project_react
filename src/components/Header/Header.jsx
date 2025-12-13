@@ -1,14 +1,28 @@
 import "../Header/header.css";
 import { NavLink } from "react-router-dom";
 import logo from "../../images/Logo.svg";
-import avatar from "../../images/avatar.svg";
+import { useContext } from "react";
 import ToggleSwitch from "../ToggleSwitch/ToggleSwitch";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 
-function Header({ handleAddClick, weatherData }) {
+function Header({
+  handleAddClick,
+  weatherData,
+  onLoginClick,
+  onRegisterClick,
+}) {
+  const currentUser = useContext(CurrentUserContext);
+
   const currentDate = new Date().toLocaleString("default", {
     month: "long",
     day: "numeric",
   });
+
+  const isLoggedIn = Boolean(currentUser);
+  const userName = currentUser?.name || "";
+  const userAvatar = currentUser?.avatar || "";
+
+  const firstLetter = userName ? userName.trim()[0].toUpperCase() : "";
 
   return (
     <header className="header">
@@ -21,20 +35,48 @@ function Header({ handleAddClick, weatherData }) {
 
       <div className="header__controls">
         <ToggleSwitch />
-        <button
-          onClick={handleAddClick}
-          type="button"
-          className="header__add-clothes-btn"
-        >
-          + Add clothes
-        </button>
+
+        {isLoggedIn && (
+          <button
+            onClick={handleAddClick}
+            type="button"
+            className="header__add-clothes-btn"
+          >
+            + Add clothes
+          </button>
+        )}
       </div>
-      <NavLink className="header__nav-link" to="/profile">
+
+      {isLoggedIn ? (
+        <NavLink className="header__nav-link" to="/profile">
+          <div className="header__user-container">
+            <p className="header__username">{userName}</p>
+
+            {userAvatar ? (
+              <img src={userAvatar} alt={userName} className="header__avatar" />
+            ) : (
+              <div className="header__avatar-placeholder">{firstLetter}</div>
+            )}
+          </div>
+        </NavLink>
+      ) : (
         <div className="header__user-container">
-          <p className="header__username">NAME</p>{" "}
-          <img src={avatar} alt="Terrance Tegegne" className="header__avatar" />
+          <button
+            type="button"
+            className="header__auth-btn"
+            onClick={onLoginClick}
+          >
+            Log in
+          </button>
+          <button
+            type="button"
+            className="header__auth-btn"
+            onClick={onRegisterClick}
+          >
+            Sign up
+          </button>
         </div>
-      </NavLink>
+      )}
     </header>
   );
 }
