@@ -62,9 +62,10 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
       isFormValid={isValid}
       buttonText={isLoading ? "Saving..." : "Save"}
     >
-      <label className="modal__label">
+      <label className="modal__label" htmlFor="edit-profile-name">
         Name:
         <input
+          id="edit-profile-name"
           type="text"
           name="name"
           className="modal__input"
@@ -78,6 +79,7 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
       <label className="modal__label">
         Avatar URL:
         <input
+          id="edit-profile-avatar"
           type="url"
           name="avatar"
           className="modal__input"

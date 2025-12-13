@@ -10,22 +10,15 @@ const defaultValues = {
 
 const validators = {
   email: (value) => {
-    if (!value) {
-      return "Email is required";
-    }
+    if (!value) return "Email is required";
     if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(value)) {
       return "Must be a valid Email";
     }
     return "";
   },
   password: (value) => {
-    if (!value) {
-      return "Password is required";
-    }
-
-    if (value.length < 6) {
-      return "Password must be atleast 6 characters";
-    }
+    if (!value) return "Password is required";
+    if (value.length < 6) return "Password must be at least 6 characters";
     return "";
   },
 };
@@ -37,22 +30,10 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
   );
 
   useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (!token) return;
-
-    auth
-      .getUserInfo(token)
-      .then((user) => {
-        setCurrentUser(user);
-        setIsLoggedIn(true);
-      })
-      .catch((err) => {
-        console.error("Token invalid:", err);
-        localStorage.removeItem("jwt");
-        setIsLoggedIn(false);
-        setCurrentUser(null);
-      });
-  }, []);
+    if (isOpen) {
+      resetForm(defaultValues);
+    }
+  }, [isOpen, resetForm]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -69,28 +50,29 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
       onSubmit={handleSubmit}
       isFormValid={isValid}
     >
-      <label htmlFor="email" className="modal__label">
-        email:{" "}
+      <label htmlFor="login-email" className="modal__label">
+        Email:
         <input
+          id="login-email"
           type="email"
           name="email"
           value={values.email}
           className="modal__input"
-          id="email"
           placeholder="Email"
           onChange={handleChange}
           required
         />
         <span className="modal__error">{errors.email}</span>
       </label>
-      <label htmlFor="password" className="modal__label">
-        password:{" "}
+
+      <label htmlFor="login-password" className="modal__label">
+        Password:
         <input
+          id="login-password"
           type="password"
           name="password"
           value={values.password}
           className="modal__input"
-          id="password"
           placeholder="Password"
           onChange={handleChange}
           required
