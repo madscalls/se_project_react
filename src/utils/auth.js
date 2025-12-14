@@ -18,7 +18,20 @@ export const signIn = ({ email, password }) => {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
-  }).then(handleResponse);
+  })
+    .then(handleResponse)
+    .then((data) => {
+      if (!data.token) {
+        return Promise.reject("No token returned from server");
+      }
+
+      localStorage.setItem("jwt", data.token);
+      return data;
+    })
+    .catch((err) => {
+      console.error("Sign in error:", err);
+      throw err;
+    });
 };
 
 export const getUserInfo = (token) => {

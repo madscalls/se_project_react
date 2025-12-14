@@ -43,7 +43,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
 
   useEffect(() => {
     if (isOpen) resetForm(defaultValues);
-  }, [isOpen, resetForm]);
+  }, [isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -66,7 +66,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           id="register-name"
           type="text"
           name="name"
-          value={values.name}
+          value={values.name ?? ""}
           className="modal__input"
           placeholder="Name"
           onChange={handleChange}
@@ -81,7 +81,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           id="register-avatar"
           type="url"
           name="avatar"
-          value={values.avatar}
+          value={values.avatar ?? ""}
           className="modal__input"
           placeholder="Avatar URL"
           onChange={handleChange}
@@ -96,7 +96,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           id="register-email"
           type="email"
           name="email"
-          value={values.email}
+          value={values.email ?? ""}
           className="modal__input"
           placeholder="Email"
           onChange={handleChange}
@@ -111,7 +111,7 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
           id="register-password"
           type="password"
           name="password"
-          value={values.password}
+          value={values.password ?? ""}
           className="modal__input"
           placeholder="Password"
           onChange={handleChange}

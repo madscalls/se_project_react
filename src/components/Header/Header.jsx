@@ -63,14 +63,14 @@ function Header({
         <div className="header__user-container">
           <button
             type="button"
-            className="header__auth-btn"
+            className="header__auth-btn header__login"
             onClick={onLoginClick}
           >
             Log in
           </button>
           <button
             type="button"
-            className="header__auth-btn"
+            className="header__auth-btn header__sign_up"
             onClick={onRegisterClick}
           >
             Sign up

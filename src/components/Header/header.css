@@ -34,6 +34,7 @@
   display: flex;
   align-items: center;
   gap: 12px;
+  flex-direction: row-reverse;
 }
 
 .header__nav-link {
@@ -42,4 +43,33 @@
 .header__username {
   margin: 0;
   color: black;
+}
+.header__login {
+  border: none;
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  background: none;
+  cursor: pointer;
+}
+.header__sign_up {
+  font-family: Cabinet Grotesk;
+  font-weight: 700;
+  font-style: Bold;
+  font-size: 20px;
+  line-height: 24px;
+  letter-spacing: 0%;
+  border: none;
+  background: none;
+  margin-left: 20px;
+  cursor: pointer;
+}
+.header__avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 100%;
+  border: 1px solid #000;
 }

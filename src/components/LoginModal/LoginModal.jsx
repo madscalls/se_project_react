@@ -25,15 +25,15 @@ const validators = {
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const { values, handleChange, errors, isValid, resetForm } = useForm(
-    defaultValues,
-    validators
+    validators,
+    defaultValues
   );
 
   useEffect(() => {
     if (isOpen) {
-      resetForm(defaultValues);
+      resetForm({ email: "", password: "" });
     }
-  }, [isOpen, resetForm]);
+  }, [isOpen]);
 
   function handleSubmit(evt) {
     evt.preventDefault();
@@ -56,7 +56,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
           id="login-email"
           type="email"
           name="email"
-          value={values.email}
+          value={values.email ?? ""}
           className="modal__input"
           placeholder="Email"
           onChange={handleChange}
@@ -71,7 +71,7 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
           id="login-password"
           type="password"
           name="password"
-          value={values.password}
+          value={values.password ?? ""}
           className="modal__input"
           placeholder="Password"
           onChange={handleChange}

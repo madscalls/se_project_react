@@ -69,7 +69,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           name="name"
           minLength="1"
           maxLength="30"
-          value={values.name}
+          value={values.name ?? ""}
           onChange={handleChange}
           required
         />
@@ -83,7 +83,7 @@ const AddItemModal = ({ isOpen, onAddItem, onClose }) => {
           className="modal__input"
           id="imageUrl"
           placeholder="Image URL"
-          value={values.imageUrl}
+          value={values.imageUrl ?? ""}
           onChange={handleChange}
           required
         />

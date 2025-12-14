@@ -1,68 +1,76 @@
 const baseUrl = "http://localhost:3001";
-const headers = { "Content-Type": "application/json" };
 
 export const handleServerResponse = (res) =>
   res.ok ? res.json() : Promise.reject(`Error: ${res.status}`);
+
 const api = {
-  // GET
   getItems() {
-    return fetch(`${baseUrl}/items`, { headers }).then(handleServerResponse);
+    return fetch(`${baseUrl}/items`, {
+      headers: { "Content-Type": "application/json" },
+    }).then(handleServerResponse);
   },
 
-  // POST
   addItem({ name, imageUrl, weather }) {
+    const token = localStorage.getItem("jwt");
+
     return fetch(`${baseUrl}/items`, {
       method: "POST",
-      headers,
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
       body: JSON.stringify({ name, imageUrl, weather }),
     }).then(handleServerResponse);
   },
 
-  // DELETE
   removeItem(itemID) {
+    const token = localStorage.getItem("jwt");
+
     return fetch(`${baseUrl}/items/${itemID}`, {
       method: "DELETE",
-      headers,
-    }).then((res) => {
-      if (!res.ok) return Promise.reject(`Error: ${res.status}`);
-      return res;
-    });
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    }).then(handleServerResponse);
   },
-};
 
-//likes & dislike
+  addCardLike(id) {
+    const token = localStorage.getItem("jwt");
 
-export const addCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "PUT",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then(handleResponse);
-};
+    return fetch(`${baseUrl}/items/${id}/likes`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    }).then(handleServerResponse);
+  },
 
-export const removeCardLike = (id, token) => {
-  return fetch(`${baseUrl}/items/${id}/likes`, {
-    method: "DELETE",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-  }).then(handleResponse);
-};
+  removeCardLike(id) {
+    const token = localStorage.getItem("jwt");
 
-export const updateUser = ({ name, avatar }) => {
-  const token = localStorage.getItem("jwt");
+    return fetch(`${baseUrl}/items/${id}/likes`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+    }).then(handleServerResponse);
+  },
 
-  return fetch(`${baseUrl}/users/me`, {
-    method: "PATCH",
-    headers: {
-      "Content-Type": "application/json",
-      authorization: `Bearer ${token}`,
-    },
-    body: JSON.stringify({ name, avatar }),
-  }).then(handleResponse);
+  updateUser({ name, avatar }) {
+    const token = localStorage.getItem("jwt");
+
+    return fetch(`${baseUrl}/users/me`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify({ name, avatar }),
+    }).then(handleServerResponse);
+  },
 };
 
 export default api;

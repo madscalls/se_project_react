@@ -5,7 +5,7 @@ import { useContext } from "react";
 import "../../index.css";
 import "./Main.css";
 
-function Main({ weatherData, handleCardClick, clothingItems }) {
+function Main({ weatherData, handleCardClick, clothingItems, onCardLike }) {
   const { currentTemperatureUnit } = useContext(CurrentTemperatureUnitContext);
 
   return (

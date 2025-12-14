@@ -20,4 +20,23 @@
 
 .card__image {
   width: 100%;
+  max-width: 326px;
+  height: auto;
+}
+
+.card__like-button {
+  background-position: center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  width: 18px;
+  height: 15px;
+  cursor: pointer;
+  border: none;
+  position: relative;
+  top: -315px;
+  right: -170px;
+}
+
+.card__like-icon {
+  border: none;
 }

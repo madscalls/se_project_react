@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
-
+import { Navigate, Route, Routes, useNavigate } from "react-router-dom";
+import api from "../../utils/api.js";
 import * as auth from "../../utils/auth.js";
-import api, { updateUser } from "../../utils/api.js";
 import { APIkey, defaultCoordinates } from "../../utils/constants";
 import { filterWeatherData, getWeather } from "../../utils/weatherApi";
 
@@ -40,6 +39,8 @@ function App() {
     condition: "",
     isDay: false,
   });
+
+  const navigate = useNavigate();
 
   const { location, error: locationError } = useCurrentLocation();
 
@@ -85,8 +86,12 @@ function App() {
 
         localStorage.setItem("jwt", res.token);
         setIsLoggedIn(true);
+        return auth.getUserInfo(res.token);
+      })
+      .then((user) => {
+        setCurrentUser(user);
         setActiveModal("");
-        return res;
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         console.error("Login failed:", err);
@@ -108,8 +113,12 @@ function App() {
 
         localStorage.setItem("jwt", res.token);
         setIsLoggedIn(true);
+        return auth.getUserInfo(res.token);
+      })
+      .then((user) => {
+        setCurrentUser(user);
         setActiveModal("");
-        return res;
+        navigate("/", { replace: true });
       })
       .catch((err) => {
         console.error("Registration failed:", err);
@@ -121,7 +130,8 @@ function App() {
   const handleUpdateUser = ({ name, avatar }) => {
     setIsLoading(true);
 
-    return updateUser({ name, avatar })
+    return api
+      .updateUser({ name, avatar })
       .then((updatedUser) => {
         setCurrentUser(updatedUser);
         setActiveModal("");
@@ -154,12 +164,7 @@ function App() {
   };
 
   const handleCardLike = ({ id, isLiked }) => {
-    const token = localStorage.getItem("jwt");
-    if (!token) return;
-
-    const request = !isLiked
-      ? api.addCardLike(id, token)
-      : api.removeCardLike(id, token);
+    const request = !isLiked ? api.addCardLike(id) : api.removeCardLike(id);
 
     request
       .then((updatedCard) => {
@@ -205,13 +210,6 @@ function App() {
         setCurrentUser(null);
         setIsLoggedIn(false);
       });
-  }, []);
-
-  useEffect(() => {
-    const token = localStorage.getItem("jwt");
-    if (token) {
-      setIsLoggedIn(true);
-    }
   }, []);
 
   useEffect(() => {

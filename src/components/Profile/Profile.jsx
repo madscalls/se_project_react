@@ -7,6 +7,7 @@ export default function Profile({
   onCardClick,
   handleAddClick,
   onEditProfile,
+  onSignOut,
 }) {
   return (
     <section className="profile">

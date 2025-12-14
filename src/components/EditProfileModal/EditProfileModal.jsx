@@ -26,17 +26,12 @@ const validators = {
 const EditProfileModal = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
   const currentUser = useContext(CurrentUserContext);
 
-  const defaultValues = {
-    name: currentUser?.name || "",
-    avatar: currentUser?.avatar || "",
-  };
-
   const { values, handleChange, errors, isValid, resetForm } = useForm(
-    defaultValues,
+    { name: "", avatar: "" },
     validators
   );
 
-  // Prefill every time it opens (and when currentUser changes)
+  // Prefill
   useEffect(() => {
     if (isOpen) {
       resetForm({
@@ -44,7 +39,7 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
         avatar: currentUser?.avatar || "",
       });
     }
-  }, [isOpen, currentUser, resetForm]);
+  }, [isOpen, currentUser]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,21 +64,21 @@ const EditProfileModal = ({ isOpen, onClose, onUpdateUser, isLoading }) => {
           type="text"
           name="name"
           className="modal__input"
-          value={values.name}
+          value={values.name ?? ""}
           onChange={handleChange}
           required
         />
         <span className="modal__error">{errors.name}</span>
       </label>
 
-      <label className="modal__label">
+      <label className="modal__label" htmlFor="edit-profile-avatar">
         Avatar URL:
         <input
           id="edit-profile-avatar"
           type="url"
           name="avatar"
           className="modal__input"
-          value={values.avatar}
+          value={values.avatar ?? ""}
           onChange={handleChange}
           required
         />
