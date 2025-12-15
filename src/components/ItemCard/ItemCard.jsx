@@ -36,8 +36,7 @@ function ItemCard({ item, onCardClick, onCardLike }) {
         }
       }}
     >
-      <img className="card__image" src={item.imageUrl} alt={item.name} />
-      <div className="card__footer">
+      <div className="card__header">
         <p className="card__name">{item.name}</p>
         {isLoggedIn && (
           <button
@@ -62,6 +61,8 @@ function ItemCard({ item, onCardClick, onCardLike }) {
           </button>
         )}
       </div>
+      <img className="card__image" src={item.imageUrl} alt={item.name} />
+      <div className="card__footer"></div>
     </li>
   );
 }

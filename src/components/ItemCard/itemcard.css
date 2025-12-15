@@ -7,21 +7,44 @@
   justify-content: center;
 }
 
-.card__name {
-  position: absolute;
-  top: 15px;
-  left: 122px;
-  margin: 0;
-  border-radius: 4px;
-  background-color: #fff;
-  height: 24px;
-  width: auto;
-}
-
 .card__image {
   width: 100%;
   max-width: 326px;
   height: auto;
+}
+
+.card__header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  gap: 30px;
+  padding: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.card__footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: transparent;
+}
+
+.card__name {
+  /* position: absolute;
+  top: 15px;
+  left: 122px; */
+  display: flex;
+  justify-content: center;
+  margin: 15px 0 0;
+  border-radius: 4px;
+  background-color: #fff;
+  padding: 2px 2px;
+  text-align: center;
+  height: 24px;
+  width: auto;
+  color: #00000099;
 }
 
 .card__like-button {
@@ -32,9 +55,9 @@
   height: 15px;
   cursor: pointer;
   border: none;
-  position: relative;
+  /* position: relative;
   top: -315px;
-  right: -170px;
+  right: -170px; */
 }
 
 .card__like-button_hidden {
