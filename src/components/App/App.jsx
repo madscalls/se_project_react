@@ -67,7 +67,8 @@ function App() {
     localStorage.removeItem("jwt");
     setIsLoggedIn(false);
     setCurrentUser(null);
-    setActiveModal("");
+    closeActiveModal();
+    navigate("/", { replace: true });
   };
 
   const handleToggleSwitchChange = () => {
@@ -90,7 +91,7 @@ function App() {
       })
       .then((user) => {
         setCurrentUser(user);
-        setActiveModal("");
+        closeActiveModal();
         navigate("/", { replace: true });
       })
       .catch((err) => {
@@ -117,7 +118,7 @@ function App() {
       })
       .then((user) => {
         setCurrentUser(user);
-        setActiveModal("");
+        closeActiveModal();
         navigate("/", { replace: true });
       })
       .catch((err) => {
@@ -247,7 +248,7 @@ function App() {
               handleAddClick={handleAddClick}
               weatherData={weatherData}
               onLoginClick={() => setActiveModal("login")}
-              onRegisterClick={() => setActiveModal("register")}
+              onRegisterClick={handleOpenRegister}
             />
 
             <Routes>
@@ -272,7 +273,7 @@ function App() {
                       clothingItems={clothingItems}
                       handleAddClick={handleAddClick}
                       handleLogin={handleLogin}
-                      onEditProfile={() => setActiveModal("edit-profile")}
+                      onEditProfile={handleOpenEditProfile}
                       onSignOut={handleSignOut}
                     />
                   </ProtectedRoute>
@@ -304,7 +305,7 @@ function App() {
 
           <RegisterModal
             isOpen={activeModal === "register"}
-            onClose={() => setActiveModal("")}
+            onClose={closeActiveModal}
             buttonText={isLoading ? "Next" : "Sign up"}
             onRegister={handleRegister}
           />

@@ -37,6 +37,10 @@
   right: -170px;
 }
 
+.card__like-button_hidden {
+  visibility: hidden;
+}
+
 .card__like-icon {
   border: none;
 }

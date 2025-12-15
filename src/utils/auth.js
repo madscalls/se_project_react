@@ -1,16 +1,12 @@
 const baseUrl = "http://localhost:3001";
-
-const handleResponse = (res) => {
-  if (!res.ok) return Promise.reject(`Error: ${res.status}`);
-  return res.json();
-};
+import { handleServerResponse } from "./api";
 
 export const signUp = ({ name, avatar, email, password }) => {
   return fetch(`${baseUrl}/signup`, {
     method: "POST",
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ name, avatar, email, password }),
-  }).then(handleResponse);
+  }).then(handleServerResponse);
 };
 
 export const signIn = ({ email, password }) => {
@@ -19,7 +15,7 @@ export const signIn = ({ email, password }) => {
     headers: { "Content-Type": "application/json" },
     body: JSON.stringify({ email, password }),
   })
-    .then(handleResponse)
+    .then(handleServerResponse)
     .then((data) => {
       if (!data.token) {
         return Promise.reject("No token returned from server");
@@ -27,10 +23,6 @@ export const signIn = ({ email, password }) => {
 
       localStorage.setItem("jwt", data.token);
       return data;
-    })
-    .catch((err) => {
-      console.error("Sign in error:", err);
-      throw err;
     });
 };
 
@@ -41,5 +33,5 @@ export const getUserInfo = (token) => {
       "Content-Type": "application/json",
       authorization: `Bearer ${token}`,
     },
-  }).then(handleResponse);
+  }).then(handleServerResponse);
 };

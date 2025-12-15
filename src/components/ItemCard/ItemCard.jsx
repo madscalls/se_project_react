@@ -12,12 +12,8 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   const likes = Array.isArray(item.likes) ? item.likes : [];
   // likes array assumed to be array of userId strings
   const isLiked = isLoggedIn
-    ? (item.likes || []).some((id) => id === currentUser._id)
+    ? likes.some((id) => id === currentUser._id)
     : false;
-
-  const itemLikeButtonClassName = `card__like-button ${
-    isLiked ? "card__like-button_active" : ""
-  }`;
 
   const handleClick = () => onCardClick(item);
 
@@ -27,30 +23,44 @@ function ItemCard({ item, onCardClick, onCardLike }) {
   };
 
   return (
-    <li className="card" onClick={handleClick}>
+    <li
+      className="card"
+      onClick={handleClick}
+      role="button"
+      tabIndex={0}
+      aria-label={`View details for ${item.name}`}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          handleClick();
+        }
+      }}
+    >
       <img className="card__image" src={item.imageUrl} alt={item.name} />
       <div className="card__footer">
         <p className="card__name">{item.name}</p>
-        <button
-          type="button"
-          className={[
-            "card__like-button",
-            isLiked && "card__like-button_active",
-            !isLoggedIn && "card__like-button_hidden",
-          ]
-            .filter(Boolean)
-            .join(" ")}
-          onClick={handleLike}
-          aria-label={isLiked ? "Unlike" : "Like"}
-          aria-pressed={isLiked}
-          disabled={!isLoggedIn}
-        >
-          <img
-            className="card__like-icon"
-            src={isLiked ? heartFilled : heart}
-            alt="like button"
-          />
-        </button>
+        {isLoggedIn && (
+          <button
+            type="button"
+            className={[
+              "card__like-button",
+              isLiked && "card__like-button_active",
+            ]
+              .filter(Boolean)
+              .join(" ")}
+            onClick={handleLike}
+            aria-label={`${isLiked ? "Remove" : "Add"} ${
+              item.name
+            } ? "from" : "to"} favorites`}
+          >
+            <img
+              className="card__like-icon"
+              src={isLiked ? heartFilled : heart}
+              alt=""
+              aria-hidden="true"
+            />
+          </button>
+        )}
       </div>
     </li>
   );

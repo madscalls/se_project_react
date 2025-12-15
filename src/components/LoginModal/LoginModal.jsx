@@ -25,8 +25,8 @@ const validators = {
 
 const LoginModal = ({ isOpen, onClose, onLogin }) => {
   const { values, handleChange, errors, isValid, resetForm } = useForm(
-    validators,
-    defaultValues
+    defaultValues,
+    validators
   );
 
   useEffect(() => {
