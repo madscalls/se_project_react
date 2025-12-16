@@ -12,6 +12,8 @@ function ModalWithForm({
   onSubmit,
   isFormValid = true,
   isLoading = false,
+  secondaryButtonText,
+  secondaryButtonAction,
 }) {
   useModalClose(isOpen, onClose);
   return (
@@ -23,15 +25,25 @@ function ModalWithForm({
         </button>
         <form className="modal__form" onSubmit={onSubmit}>
           {children}
-
-          <button
-            className="modal__submit"
-            type="submit"
-            disabled={!isFormValid || isLoading}
-            aria-disabled={!isFormValid || isLoading}
-          >
-            {buttonText}
-          </button>
+          <div className="modal__buttons">
+            <button
+              className="modal__submit"
+              type="submit"
+              disabled={!isFormValid || isLoading}
+              aria-disabled={!isFormValid || isLoading}
+            >
+              {buttonText}
+            </button>
+            {secondaryButtonText && secondaryButtonAction && (
+              <button
+                type="button"
+                onClick={secondaryButtonAction}
+                className="modal__secondary-btn"
+              >
+                {secondaryButtonText}
+              </button>
+            )}
+          </div>
         </form>
       </div>
     </div>

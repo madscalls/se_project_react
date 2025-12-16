@@ -35,7 +35,7 @@ const validators = {
   },
 };
 
-const RegisterModal = ({ isOpen, onClose, onRegister }) => {
+const RegisterModal = ({ isOpen, onClose, onRegister, onModalSwitch }) => {
   const { values, handleChange, errors, isValid, resetForm } = useForm(
     defaultValues,
     validators
@@ -58,7 +58,10 @@ const RegisterModal = ({ isOpen, onClose, onRegister }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText="Next"
       isFormValid={isValid}
+      secondaryButtonAction={onModalSwitch}
+      secondaryButtonText="or Log in"
     >
       <label htmlFor="register-name" className="modal__label">
         Name:

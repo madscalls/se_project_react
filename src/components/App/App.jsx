@@ -275,6 +275,7 @@ function App() {
                       handleLogin={handleLogin}
                       onEditProfile={handleOpenEditProfile}
                       onSignOut={handleSignOut}
+                      onCardLike={handleCardLike}
                     />
                   </ProtectedRoute>
                 }
@@ -308,6 +309,7 @@ function App() {
             onClose={closeActiveModal}
             buttonText={isLoading ? "Next" : "Sign up"}
             onRegister={handleRegister}
+            onModalSwitch={() => setActiveModal("login")}
           />
 
           <LoginModal
@@ -315,6 +317,7 @@ function App() {
             onClose={() => setActiveModal("")}
             buttonText={isLoading ? "Logging in..." : "Log in"}
             onLogin={handleLogin}
+            onModalSwitch={() => setActiveModal("register")}
           />
 
           <EditProfileModal

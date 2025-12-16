@@ -23,6 +23,7 @@
 
 .modal__opened {
   visibility: visible;
+  border-radius: 0;
 }
 
 .modal__title {

@@ -23,7 +23,7 @@ const validators = {
   },
 };
 
-const LoginModal = ({ isOpen, onClose, onLogin }) => {
+const LoginModal = ({ isOpen, onClose, onLogin, onModalSwitch }) => {
   const { values, handleChange, errors, isValid, resetForm } = useForm(
     defaultValues,
     validators
@@ -48,7 +48,10 @@ const LoginModal = ({ isOpen, onClose, onLogin }) => {
       isOpen={isOpen}
       onClose={onClose}
       onSubmit={handleSubmit}
+      buttonText="Log in"
       isFormValid={isValid}
+      secondaryButtonAction={onModalSwitch}
+      secondaryButtonText="or Sign Up"
     >
       <label htmlFor="login-email" className="modal__label">
         Email:

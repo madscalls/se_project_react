@@ -110,3 +110,14 @@ input[type="radio"]:checked + label {
   cursor: not-allowed;
   opacity: 0.5;
 }
+
+.modal__secondary-btn {
+  color: #00000080;
+  background: white;
+  border: none;
+  font-weight: 700;
+}
+
+.modal__image {
+  max-height: 498px;
+}

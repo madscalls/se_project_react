@@ -10,7 +10,9 @@
 .card__image {
   width: 100%;
   max-width: 326px;
+  height: 100%;
   height: auto;
+  object-fit: contain;
 }
 
 .card__header {
