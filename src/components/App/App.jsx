@@ -20,7 +20,7 @@ import Main from "../Main/Main";
 import Profile from "../Profile/Profile";
 import RegisterModal from "../RegisterModal/RegisterModal.jsx";
 
-import ProtectedRoute from "../../utils/ProtectedRoute.jsx";
+import ProtectedRoute from "../ProtectedRoute.jsx";
 
 import "./App.css";
 
@@ -134,7 +134,7 @@ function App() {
     return api
       .updateUser({ name, avatar })
       .then((updatedUser) => {
-        setCurrentUser(updatedUser);
+        setCurrentUser(updatedUser.data);
         setActiveModal("");
       })
       .catch((err) => {
