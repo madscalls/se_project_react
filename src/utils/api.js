@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://mcallahanse.jumpingcrab.com"
+    ? "https://api.mcallahanse.jumpingcrab.com"
     : "http://localhost:3001";
 
 export const handleServerResponse = (res) =>
