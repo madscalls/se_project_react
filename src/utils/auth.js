@@ -1,6 +1,6 @@
 const baseUrl =
   process.env.NODE_ENV === "production"
-    ? "https://mcallahanse.jumpingcrab.com/api"
+    ? "https://mcallahanse.jumpingcrab.com"
     : "http://localhost:3001";
 import { handleServerResponse } from "./api";
 
